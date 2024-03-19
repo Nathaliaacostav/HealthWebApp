@@ -57,16 +57,13 @@ const SignUp = () => {
               </label>
               <select
                 name="gender"
-                id="genre-input"
-                className="special-input"
+                id="selected-radio"
+                className="input text-300" 
               >
-                <option value="female">Femenino</option>
-                <option value="male">Masculino</option>
-                <option value="nonBinary">No binario</option>
-                <option value="agender">Agénero</option>
-                <option value="bigender">Bigénero</option>
-                <option value="fluid">Fluido</option>
-                <option value="thirdGender">Tercer género</option>
+                <option value="female" style={{ backgroundColor: '#8176B6'}}>Femenino</option>
+                <option value="male" style={{ backgroundColor: '#8176B6'}}>Masculino</option>
+                <option value="nonBinary" style={{ backgroundColor: '#8176B6'}}>No binario</option>
+                <option value="agender" style={{ backgroundColor: '#8176B6', borderRadius: '20px' }}>Otro</option>
               </select>
             </div>
           </div>
