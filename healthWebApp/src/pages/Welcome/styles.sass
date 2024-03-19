@@ -1,0 +1,112 @@
+@use '../../styles/_variables' as *
+
+.main-welcome
+  background-image: url("../../assets/images/wallpaper2.png")
+  background-size: cover
+  height: 100vh
+  display: flex
+  justify-content: center
+  align-items: center
+
+.container
+  width: 394px
+  height: 674px
+  background: white
+  border-top-left-radius: 73px
+  border-top-right-radius: 73px
+  display: flex
+  flex-direction: column
+  align-itmes: center
+  margin-top: 238px
+  
+
+  &__subtitle
+    font-size: 24px
+    font-style: normal
+    text-align: center
+    font-weight: 500
+    line-height: 87.741% /* 21.058px */
+    letter-spacing: 0.96px
+    margin-bottom: 33px
+
+.container-rols
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  gap: 16px
+  color: $primary-color
+  font-weight: $bold-weight
+  font-size: 5px
+  margin-top: 0px
+
+  
+  &__div
+    display: grid
+    justify-items: center
+    width: 250px
+    height: 150px
+    margin-top: 10px
+    margin-bottom: 70px
+    &--admin
+      background: rgba($light-color, 0.3)
+      border-radius: 50px
+      height: 40%
+      width: 100%
+      border: 2px solid $tertiary-color
+      margin-top: 8px
+    &--img
+        width: 100px
+        height: 100px
+        margin-top: 10px
+      
+  
+    &--user
+      background: rgba($light-color, 0.3)
+      border-radius: 90px
+      height: 40%
+      width: 100%
+      border: 2px solid $tertiary-color
+      margin-top: 10px
+
+
+  
+ 
+.rol
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+
+  
+  
+  p
+    font-size: 1.0rem
+    font-style: normal
+    line-height: 87.741% /* 14.039px */
+    letter-spacing: 0.64px
+    text-align: center
+    color: $tertiary-text-color
+    padding: 10px
+
+.footerText
+    text-align: center
+    margin-top: 120px
+    width: 270px
+    margin-bottom: 0px
+    font-size: 0.7rem
+    
+.container-rols__div--img
+  width: 120px /* Ajusta el ancho según sea necesario */
+  height: 120px /* Ajusta la altura según sea necesario */
+
+h2
+  font-size: 1.6rem
+  margin-top: 0
+  margin-bottom: 0
+
+.pd 
+  font-size: 0.7rem
+  margin-top: 0
+  margin-bottom: 0
+  text-align: center

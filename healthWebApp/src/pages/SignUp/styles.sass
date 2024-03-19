@@ -1,0 +1,74 @@
+@use '../../styles/_variables' as *
+@use '../../styles/_mixins' as *
+
+
+.main-signUp
+  background-image: url("../../assets/images/wallpaper2.png")
+  background-size: cover
+  height: 100vh
+  display: flex
+  justify-content: center
+  align-items: center
+
+.sign-up
+  width: 394px
+  height: 674px
+  background: $light-color
+  border-top-left-radius: 73px
+  border-top-right-radius: 73px
+  display: flex
+  flex-direction: column
+  align-itmes: center
+  margin-top: 438px
+
+
+  .check-input, .radio-input
+    opacity: 0
+  .check-label, .radio-label
+    cursor: pointer
+    border-radius: 20px
+    background-color: rgba($tertiary-color, 0.37)
+    padding: 10px
+    font-size: 1.2rem
+    letter-spacing: 0.3px
+  .radio-label
+    font-size: 1.4rem
+
+
+
+
+.userPaciente
+  width: 150px
+  height: 150px
+  margin: auto // Centrar horizontal y verticalmente
+  position: absolute
+  top: -400px
+  left: 0
+  right: 0
+  bottom:0
+  
+.special-input
+  border-radius: 20px
+  background-color: rgba($tertiary-color, 0.37) // Color para el menú desplegable
+  padding: 10px
+  font-size: 1.2rem
+  letter-spacing: 0.3px
+  border: none
+  width: 250px
+
+  // Estilo para el menú desplegable (select)
+  select
+    appearance: none // Eliminar el estilo predeterminado del navegador
+    border-radius: 20px // Aplicar borde redondeado
+    background-color: rgba($tertiary-color, 0.37) // Color para el menú desplegable
+    padding: 10px // Añadir espacio interno
+    font-size: 1.2rem // Tamaño de fuente
+    letter-spacing: 0.3px // Espaciado entre letras
+    border: none // Eliminar el borde
+    &::-webkit-input-placeholder 
+      color: transparent // Hacer el placeholder transparente
+  
+
+
+
+  
