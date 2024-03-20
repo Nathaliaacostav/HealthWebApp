@@ -1,7 +1,7 @@
 
 import "./styles.sass"
 
-const Welcome = () => {
+const Home = () => {
   
   return (
     <main className="main-welcome">
