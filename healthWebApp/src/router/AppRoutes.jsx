@@ -29,6 +29,7 @@ import AdminHome from '../pages/AdminHome'
 import 'react-toastify/dist/ReactToastify.css'
 import './AppRoutes.sass'
 import { Skeleton } from 'antd'
+import { LoginScreenProvider } from '../context/LoginScreenContext'
 
 const AppRoutes = () => {
   const { isAuthenticated, user, notificationCheck } = useSelector((store) => store.user)
@@ -88,7 +89,7 @@ const AppRoutes = () => {
   console.log(user)
 
   return (
-    <AuthProvider>
+    <LoginScreenProvider>
       <Routes>
         <Route path='/'>
           <Route element={<PublicRoutes isAuthenticated={isAuthenticated} role={user?.rol} />}>
@@ -115,7 +116,7 @@ const AppRoutes = () => {
           </Route>
         </Route>
       </Routes>
-    </AuthProvider>
+    </LoginScreenProvider>
   )
 }
 

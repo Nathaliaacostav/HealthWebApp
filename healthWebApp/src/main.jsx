@@ -8,6 +8,7 @@ import SignIn from './pages/SignIn/index.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <SignIn />
+    <SignUp />
   </React.StrictMode>,
 )
+

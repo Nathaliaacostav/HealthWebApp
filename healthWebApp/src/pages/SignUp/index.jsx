@@ -1,10 +1,44 @@
-import { MdOutlineMailOutline, MdOutlineLock } from "react-icons/md";
-import { FaRegUser, FaRegHeart } from "react-icons/fa6";
-import userImage from "../../assets/images/Paciente.png";
-import wallpaper from "../../assets/images/wallpaper2.png";
-import "./styles.sass";
+import React, { useState } from 'react';
+import { MdOutlineMailOutline, MdOutlineLock } from 'react-icons/md';
+import { FaRegUser, FaRegHeart } from 'react-icons/fa6';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebase/firebaseConfig';
+import userImage from '../../assets/images/Paciente.png';
+import wallpaper from '../../assets/images/wallpaper2.png';
+import './styles.sass';
+
 
 const SignUp = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    gender: '',
+    password: '',
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { user } = await createUserWithEmailAndPassword(
+        auth,
+        formData.email,
+        formData.password
+      );
+      console.log('Usuario creado:', user);
+      // Aquí puedes hacer algo después de que el usuario se haya registrado, como redirigirlo a otra página.
+    } catch (error) {
+      console.error('Error al crear usuario:', error);
+      // Aquí puedes manejar el error, mostrar un mensaje al usuario, etc.
+    }
+  };
+
   return (
     <main className="main-signUp">
       <section>
@@ -12,7 +46,7 @@ const SignUp = () => {
       </section>
       <section className="sign-up">
         <h1>Crear cuenta</h1>
-        <form className="sign-in__form">
+        <form className="sign-in__form" onSubmit={handleSubmit}>
           <div className="form__input-label">
             <label htmlFor="name-input" className="form__input-label--label">
               Nombre
@@ -26,6 +60,9 @@ const SignUp = () => {
                 placeholder="Jane Doe"
                 id="name-input"
                 className="input"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
                 autoComplete="off"
               />
             </div>
@@ -43,6 +80,9 @@ const SignUp = () => {
                 placeholder="example@email.com"
                 id="email-input"
                 className="input"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
                 autoComplete="off"
               />
             </div>
@@ -58,12 +98,14 @@ const SignUp = () => {
               <select
                 name="gender"
                 id="selected-radio"
-                className="input text-300" 
+                className="input text-300"
+                value={formData.gender}
+                onChange={handleChange}
               >
-                <option value="female" style={{ backgroundColor: '#8176B6'}}>Femenino</option>
-                <option value="male" style={{ backgroundColor: '#8176B6'}}>Masculino</option>
-                <option value="nonBinary" style={{ backgroundColor: '#8176B6'}}>No binario</option>
-                <option value="agender" style={{ backgroundColor: '#8176B6', borderRadius: '20px' }}>Otro</option>
+                <option value="female">Femenino</option>
+                <option value="male">Masculino</option>
+                <option value="nonBinary">No binario</option>
+                <option value="agender">Otro</option>
               </select>
             </div>
           </div>
@@ -83,6 +125,9 @@ const SignUp = () => {
                 placeholder="***********"
                 id="password-input"
                 className="input"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -99,5 +144,4 @@ const SignUp = () => {
     </main>
   );
 };
-
 export default SignUp;
