@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'; // Importa BrowserRouter
 import { useDispatch, useSelector } from 'react-redux';
 import { onAuthStateChanged } from 'firebase/auth';
-import { getToken, onMessage } from 'firebase/messaging';
 import { auth, messaging } from '../firebase/firebaseConfig';
 import { setIsAuthenticated, setUser } from '../store/users/userSlice';
 import { toast } from 'react-toastify';
@@ -16,6 +15,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import './AppRoutes.sass';
 import { Skeleton } from 'antd';
 import { LoginScreenProvider } from '../context/LoginScreenContext';
+import FileUpload from '../pages/FileUpload';
+import PaymentMethod from '../pages/PaymentMethod';
+import PaymentValidation from '../pages/PaymentValidation';
+import PhotoTaking from '../pages/PhotoTaking';
+import SuccessfullUpload from '../pages/SuccesfulUpload';
+import SuccessfullPayment from '../pages/SuccessfulPayment';
 
 const AppRoutes = () => {
   const { isAuthenticated, user } = useSelector((store) => store.user);
@@ -52,21 +57,29 @@ const AppRoutes = () => {
   }
 
   return (
-    <LoginScreenProvider>
-      <Routes>
-        <Route path="/">
-          <Route element={<PublicRoutes isAuthenticated={isAuthenticated} />}>
-            <Route path="sign-in" element={<SignIn />} />
-            <Route path="sign-up" element={<SignUp />} />
-            <Route path="welcome" element={<Welcome />} />
+    <Router> {/* Envuelve toda la aplicación con BrowserRouter */}
+      <LoginScreenProvider>
+        <Routes>
+          <Route path="/">
+            <Route element={<PublicRoutes isAuthenticated={isAuthenticated} />}>
+              <Route path="sign-in" element={<SignIn />} />
+              <Route path="sign-up" element={<SignUp />} />
+              <Route path="welcome" element={<Welcome />} />
+            </Route>
+            <Route element={<PrivatedRoutes isAuthenticated={isAuthenticated} />}>
+              <Route path="home" element={<Home />} />
+              <Route index element={<Navigate to="/home" />} />
+              <Route path="upload-documents" element={<FileUpload />} />
+              <Route path="payment-method" element={<PaymentMethod />} />
+              <Route path="payment-validation" element={<PaymentValidation />} />
+              <Route path="photo-taking" element={<PhotoTaking />} />
+              <Route path="successfull-up" element={<SuccessfullUpload />} />
+              <Route path="successfull-payment" element={<SuccessfullPayment />} />
+            </Route>
           </Route>
-          <Route element={<PrivatedRoutes isAuthenticated={isAuthenticated} />}>
-            <Route path="home" element={<Home />} />
-            <Route index element={<Navigate to="/home" />} />
-          </Route>
-        </Route>
-      </Routes>
-    </LoginScreenProvider>
+        </Routes>
+      </LoginScreenProvider>
+    </Router>
   );
 };
 
