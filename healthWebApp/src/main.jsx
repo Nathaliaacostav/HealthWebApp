@@ -1,14 +1,15 @@
 import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
-import Welcome from './pages/Welcome/index.jsx'
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom'
+import AppRoutes from './router/AppRoutes.jsx'
+import { Provider } from 'react-redux'
+import './styles/global.sass'
 import SignUp from './pages/SignUp/index.jsx'
-import SignIn from './pages/SignIn/index.jsx'
+
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  <BrowserRouter>
     <SignUp />
-  </React.StrictMode>,
-)
-
+  </BrowserRouter>
+);

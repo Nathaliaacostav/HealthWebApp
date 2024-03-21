@@ -10,6 +10,7 @@ import wallpaper from '../../assets/images/wallpaper2.png';
 import Swal from 'sweetalert2';
 import './styles.sass';
 
+
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -111,7 +112,7 @@ const SignIn = () => {
           </div>
         </form>
         <p className='sign-in__form-wrapper--text'>¿No tienes cuenta? <Link to='/sign-up'>crea una cuenta</Link></p>
-      </section>
+      </section> 
     </main>
   );
 };
