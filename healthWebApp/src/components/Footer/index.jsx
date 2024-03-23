@@ -20,7 +20,7 @@ const Footer = ({ pathname, notificationCheck }) => {
         <div className="option flex flex-col justify-center items-center gap-1">
           <ExamsIcon active={pathname === "/activity"} />
           <span style={{ color: pathname === "/activity" ? "#8176B6" : "#A5A5A5" }}>
-            Actividad
+            Lectturas
           </span>
         </div>
       </Link>
