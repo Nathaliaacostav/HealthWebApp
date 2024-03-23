@@ -4,7 +4,7 @@ import { FaRegUser, FaRegHeart } from 'react-icons/fa6';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase/firebaseConfig';
 import userImage from '../../assets/images/Paciente.png';
-import wallpaper from '../../assets/images/wallpaper2.png';
+import wallpaper from '../../assets/images/wallpaper1.png';
 import './styles.sass';
 
 

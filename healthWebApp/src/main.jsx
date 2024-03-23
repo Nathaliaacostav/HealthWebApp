@@ -5,11 +5,12 @@ import AppRoutes from './router/AppRoutes.jsx'
 import { Provider } from 'react-redux'
 import './styles/global.sass'
 import SignUp from './pages/SignUp/index.jsx'
+import Home from './pages/Home/index.jsx';
 
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <SignUp />
+    <Home />
   </BrowserRouter>
 );

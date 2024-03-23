@@ -6,7 +6,7 @@ import { loginUser } from '../../store/users/userThunks';
 import { MdOutlineMailOutline, MdOutlineLock } from 'react-icons/md';
 import { FiPhone } from 'react-icons/fi';
 import { FcGoogle } from 'react-icons/fc';
-import wallpaper from '../../assets/images/wallpaper2.png';
+import wallpaper from '../../assets/images/wallpaper1.png';
 import Swal from 'sweetalert2';
 import './styles.sass';
 
