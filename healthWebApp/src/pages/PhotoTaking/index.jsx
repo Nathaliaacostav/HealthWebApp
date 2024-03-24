@@ -1,10 +1,9 @@
 import React from 'react';
-import './styles.sass';
 import Footer from "../../components/Footer";
 import { IoIosArrowBack } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
 import { FiMoreVertical } from 'react-icons/fi';
-import { Dropdown, Menu } from 'antd';
+import './styles.sass';
 
 
 const PhotoTaking = () => {

@@ -15,11 +15,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import './AppRoutes.sass';
 import { Skeleton } from 'antd';
 import { LoginScreenProvider } from '../context/LoginScreenContext';
-import FileUpload from '../pages/FileUpload';
 import PaymentMethod from '../pages/PaymentMethod';
 import PaymentValidation from '../pages/PaymentValidation';
 import PhotoTaking from '../pages/PhotoTaking';
-import SuccessfullUpload from '../pages/SuccesfulUpload';
 import SuccessfullPayment from '../pages/SuccessfulPayment';
 
 const AppRoutes = () => {
@@ -69,11 +67,9 @@ const AppRoutes = () => {
             <Route element={<PrivatedRoutes isAuthenticated={isAuthenticated} />}>
               <Route path="home" element={<Home />} />
               <Route index element={<Navigate to="/home" />} />
-              <Route path="upload-documents" element={<FileUpload />} />
               <Route path="payment-method" element={<PaymentMethod />} />
               <Route path="payment-validation" element={<PaymentValidation />} />
               <Route path="photo-taking" element={<PhotoTaking />} />
-              <Route path="successfull-up" element={<SuccessfullUpload />} />
               <Route path="successfull-payment" element={<SuccessfullPayment />} />
             </Route>
           </Route>
