@@ -9,11 +9,13 @@ import Home from './pages/Home/index.jsx';
 import PhotoTaking from './pages/PhotoTaking/index.jsx';
 import PaymentValidation from './pages/PaymentValidation/index.jsx';
 import PaymentMethod from './pages/PaymentMethod/index.jsx';
+import SuccessfullPayment from './pages/SuccessfulPayment/index.jsx';
+import SignIn from './pages/SignIn/index.jsx';
 
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <PaymentMethod />
+    <SuccessfullPayment />
   </BrowserRouter>
 );
