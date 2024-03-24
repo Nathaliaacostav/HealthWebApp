@@ -1,0 +1,59 @@
+.chat-container
+    max-width: 400px
+    margin: 20px auto
+    background-color: #fff
+    border-radius: 10px
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
+    overflow: hidden
+
+.chat-header
+    background-color: #007bff
+    color: #fff
+    padding: 10px 15px
+    font-size: 18px
+    font-weight: bold
+
+.chat-messages
+    padding: 10px
+    overflow-y: auto
+    max-height: 300px
+
+.message
+    margin-bottom: 10px
+    &--user
+        text-align: right
+
+    &--user .message-bubble
+        background-color: #007bff
+        color: #fff
+
+    &--bot .message-bubble
+        background-color: #f0f0f0
+        color: #333
+
+.message-bubble
+    border-radius: 10px
+    padding: 8px 12px
+    max-width: 70%
+    word-wrap: break-word
+
+.chat-input
+    padding: 10px
+    border-top: 1px solid #ddd
+
+.input-field
+    width: calc(100% - 20px)
+    padding: 8px
+    border: 1px solid #ddd
+    border-radius: 20px
+    outline: none
+
+.send-button
+    background-color: #007bff
+    color: #fff
+    border: none
+    padding: 8px 15px
+    border-radius: 20px
+    cursor: pointer
+    outline: none
+    margin-left: 10px
