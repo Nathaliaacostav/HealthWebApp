@@ -32,9 +32,9 @@ const Footer = ({ pathname, notificationCheck }) => {
           </span>
         </div>
       </Link>
-      <div style={{ position: 'absolute' }}>
+      {/* <div style={{ position: 'absolute' }}>
         {notificationCheck ? <ToastContainer /> : ''}
-      </div>
+      </div> */}
     </nav>
   );
 };
