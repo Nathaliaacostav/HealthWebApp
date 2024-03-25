@@ -13,31 +13,31 @@ const Home = () => {
           tu resultado médico en menos de 24h
         </h3>
         <p className="home__title--paragraph">+ humano + rápido</p>
-        <div class="container--buttonRound">
-          <button class="buttonRound">
+        <div className="container--buttonRound">
+          <button className="buttonRound">
             <img
-              class="buttonRound--icon"
+              className="buttonRound--icon"
               src="https://res.cloudinary.com/dhhyc88td/image/upload/v1711175393/usuario_hka6sn.png"
               alt=""
             />
           </button>
-          <button class="buttonRound">
+          <button className="buttonRound">
             <img
-              class="buttonRound--icon"
+              className="buttonRound--icon"
               src="https://res.cloudinary.com/dhhyc88td/image/upload/v1711175393/dolar_honbfw.png"
               alt=""
             />
           </button>
-          <button class="buttonRound">
+          <button className="buttonRound">
             <img
-              class="buttonRound--icon"
+              className="buttonRound--icon"
               src="https://res.cloudinary.com/dhhyc88td/image/upload/v1711175393/examen-medico_hq01ey.png"
               alt=""
             />
           </button>
-          <button class="buttonRound">
+          <button className="buttonRound">
             <img
-              class="buttonRound--icon"
+              className="buttonRound--icon"
               src="https://res.cloudinary.com/dhhyc88td/image/upload/v1711175393/anadir_bscuhr.png"
               alt=""
             />
