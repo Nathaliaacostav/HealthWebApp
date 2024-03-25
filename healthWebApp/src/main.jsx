@@ -6,11 +6,12 @@ import AppRoutes from './router/AppRoutes.jsx';
 import { Provider } from 'react-redux';
 import store from './store/store.js';
 import './styles/global.sass';
+import DocHome from './pages/DocHome/index.jsx';
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Provider store={store}>
-      <AppRoutes />
+      <DocHome />
     </Provider>
   </BrowserRouter>
 );
