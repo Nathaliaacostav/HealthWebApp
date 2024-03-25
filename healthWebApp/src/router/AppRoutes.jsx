@@ -23,12 +23,12 @@ import { auth } from '../firebase/firebaseConfig';
 
 const AppRoutes = () => {
   
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+/*   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [checking, setChecking] = useState(true);
 
   const dispatch = useDispatch();
 
-/* useEffect(() => {
+useEffect(() => {
   const unsubscribe = onAuthStateChanged(auth, (user) => {
     if (user) {
       dispatch(setIsAuthenticated(true));
@@ -48,8 +48,8 @@ const AppRoutes = () => {
   });
 
   return () => unsubscribe();
-}, [dispatch]);
- */
+}, [dispatch]); */
+
   return (
       <LoginScreenProvider>
         <Routes>
