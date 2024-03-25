@@ -1,21 +1,16 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom'
-import AppRoutes from './router/AppRoutes.jsx'
-import { Provider } from 'react-redux'
-import './styles/global.sass'
-import SignUp from './pages/SignUp/index.jsx'
-import Home from './pages/Home/index.jsx';
-import PhotoTaking from './pages/PhotoTaking/index.jsx';
-import PaymentValidation from './pages/PaymentValidation/index.jsx';
-import PaymentMethod from './pages/PaymentMethod/index.jsx';
-import SuccessfullPayment from './pages/SuccessfulPayment/index.jsx';
-import SignIn from './pages/SignIn/index.jsx';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import AppRoutes from './router/AppRoutes.jsx';
+import { Provider } from 'react-redux';
+import store from './store/store.js';
+import './styles/global.sass';
 
-
-
-ReactDOM.createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <SuccessfullPayment />
+    <Provider store={store}>
+      <AppRoutes />
+    </Provider>
   </BrowserRouter>
 );
