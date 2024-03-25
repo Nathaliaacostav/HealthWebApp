@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'; // Importa BrowserRouter
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, messaging } from '../firebase/firebaseConfig';
@@ -55,28 +55,26 @@ const AppRoutes = () => {
   }
 
   return (
-    <Router> {/* Envuelve toda la aplicación con BrowserRouter */}
       <LoginScreenProvider>
         <Routes>
-          <Route path="/">
-            <Route element={<PublicRoutes isAuthenticated={isAuthenticated} />}>
-              <Route path="sign-in" element={<SignIn />} />
-              <Route path="sign-up" element={<SignUp />} />
-              <Route path="welcome" element={<Welcome />} />
+          <Route path='/'>
+            <Route element={<PublicRoutes isAuthenticated={isAuthenticated}/>}>
+              <Route path="/sign-in" element={<SignIn />} />
+              <Route path="/sign-up" element={<SignUp />} />
+              <Route path="/welcome" element={<Welcome />} />
             </Route>
             <Route element={<PrivatedRoutes isAuthenticated={isAuthenticated} />}>
-              <Route path="home" element={<Home />} />
+              <Route path="/payment-method" element={<PaymentMethod />} />
+              <Route path="/payment-validation" element={<PaymentValidation />} />
+              <Route path="/photo-taking" element={<PhotoTaking />} />
+              <Route path="/successfull-payment" element={<SuccessfullPayment />} />
+              <Route path="/home" element={<Home />} />
               <Route index element={<Navigate to="/home" />} />
-              <Route path="payment-method" element={<PaymentMethod />} />
-              <Route path="payment-validation" element={<PaymentValidation />} />
-              <Route path="photo-taking" element={<PhotoTaking />} />
-              <Route path="successfull-payment" element={<SuccessfullPayment />} />
             </Route>
           </Route>
         </Routes>
       </LoginScreenProvider>
-    </Router>
-  );
-};
+  )
+}
 
 export default AppRoutes;
