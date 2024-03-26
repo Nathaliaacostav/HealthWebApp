@@ -8,12 +8,11 @@
   gap: $gap
 
 @mixin labelStyle()
-  font-size: 1rem
+  font-size: 20px
   color: $secondary-text-color
   text-align: left
   margin-left: 12px
-  margin-bottom: -30px
-  
+  height: 30px
 
 @mixin inputWrapper()
   width: 90%
@@ -24,7 +23,10 @@
   align-items: center
   background-color: rgba($tertiary-color, 0.37)
   padding: 0 20px
-  margin-left: -9px
+  margin-left: 10px
+  margin-top: -50px
+  
+  
 
 @mixin inputStyle()
   width: 250px
@@ -70,42 +72,6 @@
   padding-bottom: 40px
   padding-top: 7px
 
-
-@mixin profileContent($userinfo-color)
-  position: absolute
-  z-index: 3
-  top: 15px
-  right: 20px
-  text-align: right
-  color: $userinfo-color
-  display: grid
-  grid-template-rows: 70px 30px 20px
-  align-items: center
-  &--title
-    font-size: 3.6rem
-    font-weight: $extrabold-weight
-  &--text
-    font-size: 2rem
-    font-weight: $medium-weight
-  &--span
-    font-size: 1.3rem
-    font-weight: $medium-weight
-
-@mixin profilePictureStyles()
-  width: 92px
-  height: 92px
-  background-color: $tertiary-color
-  position: absolute
-  z-index: 6
-  top: 15px
-  left: 15px
-  display: grid
-  place-content: center
-  border-radius: 50%
-  img
-    width: 82px
-    height: 82px
-    border-radius: 50%
 
 @mixin titleBrand()
   font-size: 70px

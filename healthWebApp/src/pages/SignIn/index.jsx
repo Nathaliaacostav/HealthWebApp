@@ -34,12 +34,10 @@ const SignIn = () => {
 
   return (
     <main className='sign-in'>
-      <section className='sign-in__wallpaper-container'>
-      </section>
-      <section className='sign-in__form-wrapper'>
-        <h2 className='sign-in__form-wrapper--title'>Iniciar sesión</h2>
+      <section className='sign-in__formWrapper'>
+        <h2 className='sign-in__formWrapper--title'>Iniciar sesión</h2>
         <form
-          className='sign-in__form-wrapper--form form'
+          className='sign-in__formWrapper--form form'
           onSubmit={handleSubmit(handleLogin)}
         >
           <div className='form__input-label'>
