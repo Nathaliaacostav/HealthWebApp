@@ -20,6 +20,7 @@ import DocHome from '../pages/DocHome';
 import { onAuthStateChanged } from 'firebase/auth';
 import { setIsAuthenticated, setUser } from '../store/users/userSlice';
 import { auth } from '../firebase/firebaseConfig';
+import './AppRoutes.sass'
 
 const AppRoutes = () => {
   

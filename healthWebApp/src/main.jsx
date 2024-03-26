@@ -5,6 +5,8 @@ import AppRoutes from './router/AppRoutes.jsx'
 import { Provider } from 'react-redux'
 import store from './store/store.js'
 import './styles/global.sass'
+import SignIn from './pages/SignIn/index.jsx'
+import Welcome from './pages/Welcome/index.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(

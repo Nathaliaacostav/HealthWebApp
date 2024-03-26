@@ -1,0 +1,85 @@
+@use '../../styles/_variables' as *
+@use '../../styles/_mixins' as *
+
+
+.docHome
+  background-image: url("../../assets/images/wallpaper1.png")
+  background-size: cover
+  height: 100vh
+  width: 390px
+  display: flex
+  flex-direction: column 
+  justify-content: center
+  align-items: center
+ 
+.docProfile
+  display: flex
+  flex-direction: row
+  margin-top: 10px
+  &__content
+    display: flex
+    align-items: center
+    margin-top: 60px
+    &-photo
+      width: 150px
+      height: 150px
+    &-data
+      display: flex
+      flex-direction: column
+      justify-content: center
+      margin-top: 10px
+      padding-right: 15px
+
+
+.doctorTitle
+  font-size: 29px
+  font-weight: $bold-weight
+  color: white
+
+.doctorDescription
+  font-size: 15px
+  font-weight: $light-weight
+  color: white
+
+.container__docHomeTitle
+  @include titleH1()
+
+.container__docHomeTitle
+  align-self: flex-start
+  margin-bottom: 30px
+  margin-left: 120px
+
+.container__contentPatient
+  display: flex
+  width: 350px
+  height: 110px
+  align-items: flex-start
+  margin-bottom: 20px
+  background: $input-color
+  border: 2px solid $tertiary-color
+  border-radius: 20px
+
+  &-description
+    display: flex
+    flex-direction: column
+    margin-left: 20px
+    padding-top: 10px
+    
+
+
+.patientTitle
+  font-size: 20px
+  font-weight: $bold-weight
+  color: $secondary-text-color
+  margin-bottom: 5px
+
+.patientData
+  font-size: 15px
+
+.patientImg
+  width: 90px
+  height: 90px
+  padding: 0px
+  margin-right: 0
+  margin-left: auto 
+  padding-top: 10px
