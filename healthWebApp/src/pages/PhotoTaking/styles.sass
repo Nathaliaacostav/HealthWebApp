@@ -62,14 +62,11 @@
     margin-top: 20px
     gap: 25px
   &__container--title
-    color: $tertiary-color
-    font-family: $secondary-font
-    font-weight: $regular-weight
-    font-size: 17px
+    @include subtitleH3()
     padding: 0px 30px 10px
     text-align: center
-    line-height: 21px
+    
     
 .submitButton
-    @include buttonStyle()
-    font-weight: $bold-weight
+    @include buttonStyleHome()
+    

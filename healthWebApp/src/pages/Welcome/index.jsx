@@ -7,12 +7,10 @@ const Welcome = () => {
   return (
     <main className="main-welcome">
       <div className="container">
-        {/* <h1 className="container__title">Lecttu</h1>
-        <h2 className="container__subtitle">Elige tu rol</h2> */}
         <section className="container-rols">
           <div className="container-rols__div">
             <img src={userImage} alt="user" className="container-rols__div--img"/>
-            <h2>Soy un paciente</h2>
+            <h2 className="welcomeTitle">Soy un paciente</h2>
             <p className="pd">Obtén lecturas de tus exámenes médicos y orientación en salud.</p>
             <button className="rol container-rols__div--user">
               <p>Ingresa</p>
@@ -20,7 +18,7 @@ const Welcome = () => {
           </div>
           <div className="container-rols__div">
             <img src={adminImage} alt="admin" className="container-rols__div--img"/>
-            <h2>Soy un médico</h2>
+            <h2 className="welcomeTitle">Soy un médico</h2>
             <p className="pd">Brindo orientación en salud e interpretación de exámenes</p>
             <button className="rol container-rols__div--admin">
               <p>Ingresa</p>

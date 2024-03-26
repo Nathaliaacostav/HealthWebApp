@@ -27,7 +27,7 @@ const PaymentMethod = () => {
         <h1 className='PaymentMethod__container-title1'>Total a pagar</h1>
         <h1 className='PaymentMethod__container-title2'>$15.000</h1>
         <p className='PaymentMethod__container-paragraph'>Valor en pesos colombianos</p>
-        <p className='PaymentMethod__container-small'>¡Escoge tu método de pago!</p>
+        <h1 className='PaymentMethod__container-small'>¡Escoge tu método de pago!</h1>
         <div className='PaymentMethod__container-method'>
           <button className='type'>
             <img className='iconPay'src="https://res.cloudinary.com/dhhyc88td/image/upload/v1711301781/pseLogo_zifxqp.png" alt="Descripción de la imagen" />

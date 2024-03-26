@@ -35,7 +35,6 @@ const SignIn = () => {
   return (
     <main className='sign-in'>
       <section className='sign-in__wallpaper-container'>
-        <img src={wallpaper} alt='background image' />
       </section>
       <section className='sign-in__form-wrapper'>
         <h2 className='sign-in__form-wrapper--title'>Iniciar sesión</h2>
