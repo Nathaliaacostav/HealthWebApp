@@ -5,21 +5,23 @@
 .main-signUp
   background-image: url("../../assets/images/wallpaper2.png")
   background-size: cover
-  height: 674px
+  height: 844px // Ajustamos la altura para que se adapte al dispositivo
+  width: 390px // Ajustamos el ancho para que se adapte al dispositivo
   display: flex
   justify-content: center
   align-items: center
 
 .sign-up
-  width: 394px
-  height: 674px
+  width: 100% // Ajustamos el ancho al 100% para que se adapte al contenedor principal
+  max-width: 390px // Establecemos un ancho máximo para mantener la consistencia en dispositivos más grandes
+  height: auto // Permitimos que la altura se ajuste automáticamente según el contenido
   background: $light-color
   border-top-left-radius: 73px
   border-top-right-radius: 73px
   display: flex
   flex-direction: column
-  align-itmes: center
-  margin-top: 438px
+  align-items: center
+  padding: 40px // Añadimos un relleno para separar el contenido de los bordes
 
 
   .check-input, .radio-input
@@ -37,7 +39,7 @@
 .userPaciente
   width: 150px
   height: 150px
-  margin: auto // Centrar horizontal y verticalmente
+  margin-bottom: 20px// Centrar horizontal y verticalmente
   position: absolute
   top: -550px
   left: 0
