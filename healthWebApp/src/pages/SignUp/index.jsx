@@ -4,7 +4,6 @@ import { FaRegUser, FaRegHeart } from 'react-icons/fa6';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase/firebaseConfig';
 import userImage from '../../assets/images/Paciente.png';
-import wallpaper from '../../assets/images/wallpaper1.png';
 import './styles.sass';
 
 
@@ -41,20 +40,14 @@ const SignUp = () => {
 
   return (
     <main className="main-signUp">
-      <section>
-        <img src={userImage} alt="user" className="userPaciente" />
-      </section>
       <section className="sign-up">
         <h1>Crear cuenta</h1>
         <form className="sign-in__form" onSubmit={handleSubmit}>
-          <div className="form__input-label">
-            <label htmlFor="name-input" className="form__input-label--label">
+          <div className="custom-input">
+            <label htmlFor="name-input" className="input-label">
               Nombre
             </label>
-            <div className="form__input-label--wrapper">
-              <label htmlFor="name-input" className="icon">
-                <FaRegUser />
-              </label>
+            <div className="input-wrapper">
               <input
                 type="text"
                 placeholder="Jane Doe"
@@ -65,13 +58,14 @@ const SignUp = () => {
                 onChange={handleChange}
                 autoComplete="off"
               />
+              <FaRegUser className="icon" />
             </div>
           </div>
-          <div className="form__input-label">
-            <label htmlFor="email-input" className="form__input-label--label">
+          <div className="custom-input">
+            <label htmlFor="email-input" className="input-label">
               Email
             </label>
-            <div className="form__input-label--wrapper">
+            <div className="input-wrapper">
               <label htmlFor="email-input" className="icon">
                 <MdOutlineMailOutline />
               </label>
@@ -87,14 +81,11 @@ const SignUp = () => {
               />
             </div>
           </div>
-          <div className="form__input-label">
-            <label htmlFor="genre-input" className="form__input-label--label">
+          <div className="custom-input">
+            <label htmlFor="genre-input" className="input-label">
               Género
             </label>
-            <div className="form__input-label--wrapper">
-              <label htmlFor="genre-input" className="icon">
-                <FaRegHeart />
-              </label>
+            <div className="input-wrapper">
               <select
                 name="gender"
                 id="selected-radio"
@@ -107,19 +98,17 @@ const SignUp = () => {
                 <option value="nonBinary">No binario</option>
                 <option value="agender">Otro</option>
               </select>
+              <FaRegHeart className="icon" />
             </div>
           </div>
-          <div className="form__input-label">
+          <div className="custom-input">
             <label
               htmlFor="password-input"
-              className="form__input-label--label"
+              className="input-label"
             >
               Contraseña
             </label>
-            <div className="form__input-label--wrapper">
-              <label htmlFor="password-input" className="icon">
-                <MdOutlineLock />
-              </label>
+            <div className="input-wrapper">
               <input
                 type="password"
                 placeholder="***********"
@@ -129,6 +118,7 @@ const SignUp = () => {
                 value={formData.password}
                 onChange={handleChange}
               />
+              <MdOutlineLock className="icon" />
             </div>
           </div>
           <div className="form__buttons-container">
@@ -137,7 +127,7 @@ const SignUp = () => {
             </button>
           </div>
         </form>
-        <p className="sign-in__form-wrapper--text">
+        <p className="smaller">
           ¿Ya tienes cuenta? inicia sesión
         </p>
       </section>
