@@ -1,48 +1,84 @@
+import { setUser, setLoading, setError } from './userSlice';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import { auth } from '../../firebase/firebaseConfig'
-import { setUser, setIsAuthenticated, setLoading, setError } from './userSlice'
+import { setIsAuthenticated} from './userSlice'
 
 // Función para registrar un nuevo usuario
-export const registerUser = (email, password) => async (dispatch) => {
+export const createAnAccountAsync = ( newUser ) => async ( dispatch ) => {
   try {
-    dispatch(setLoading(true))
-    const { user } = await createUserWithEmailAndPassword(auth, email, password)
-    dispatch(setUser(user))
+    const { user } = await createUserWithEmailAndPassword(
+      auth,
+      newUser.email,
+      newUser.password,
+    )
+    await updateProfile(auth.currentUser, {
+      displayName: newUser.name,
+    })
+    const userLogged = await createUserInCollection(user.uid, {
+      name: newUser.name,
+      accessToken: user.accessToken,
+      email: newUser.email,
+      gender: newUser.gender,
+      category: newUser.category,
+      notificationCheck: newUser.notificationCheck,
+      alertsCheck: newUser.alertsCheck,
+      
+    })
+    dispatch(
+      setUser({
+        id: userLogged.uid,
+        displayName: userLogged.name,
+        email: userLogged.email,
+        accessToken: userLogged.accessToken,
+      })
+    )
     dispatch(setIsAuthenticated(true))
-    dispatch(setError(null))
+    dispatch(setError(false))
   } catch (error) {
-    dispatch(setError(error.message))
-  } finally {
-    dispatch(setLoading(false))
+    console.warn(error)
+    dispatch(
+      setError({ error: true, code: error.code, message: error.message })
+    )
   }
 }
 
-// Función para iniciar sesión
-export const loginUser = (email, password) => async (dispatch) => {
+export const loginWithEmailAndPassword = ({ email, password }) => async ( dispatch ) => {
   try {
-    dispatch(setLoading(true))
     const { user } = await signInWithEmailAndPassword(auth, email, password)
-    dispatch(setUser(user))
-    dispatch(setIsAuthenticated(true))
-    dispatch(setError(null))
+    const userLogged = await getUserFromCollection(user.uid)
+    if (userLogged) {
+      dispatch(setIsAuthenticated(true))
+      dispatch(setUser({ 
+        email: userLogged.email, 
+        id: user.uid, 
+        name: userLogged.name,
+        accessToken: userLogged.accessToken, 
+      }))
+      console.log(userLogged)
+      dispatch(setError(false))
+    } else {
+      dispatch(setIsAuthenticated(false))
+      dispatch(
+        setError({ error: true })
+      )
+    }
   } catch (error) {
-    dispatch(setError(error.message))
-  } finally {
-    dispatch(setLoading(false))
+    dispatch(setIsAuthenticated(false))
+    dispatch(
+      setError({ error: true, code: error.code, message: error.message })
+    )
   }
 }
 
-// Función para cerrar sesión
-export const logoutUser = () => async (dispatch) => {
+export const logoutAsync = () => async ( dispatch ) => {
   try {
-    dispatch(setLoading(true))
     await signOut(auth)
-    dispatch(setUser(null))
     dispatch(setIsAuthenticated(false))
+    dispatch(setUser(null))
     dispatch(setError(null))
   } catch (error) {
-    dispatch(setError(error.message))
-  } finally {
-    dispatch(setLoading(false))
+    dispatch(
+      setError({ error: true, code: error.code, message: error.message })
+    )
   }
 }

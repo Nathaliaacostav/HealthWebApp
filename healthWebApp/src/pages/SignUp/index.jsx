@@ -4,11 +4,14 @@ import { FaRegUser, FaRegHeart } from 'react-icons/fa6';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase/firebaseConfig';
 import userImage from '../../assets/images/Paciente.png';
-import wallpaper from '../../assets/images/wallpaper2.png';
 import './styles.sass';
+import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 
 const SignUp = () => {
+  const navigate = useNavigate()
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -25,6 +28,15 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    //verifica si hay campos vacíos
+    if (!formData.name || !formData.email || !formData.gender || !formData.password) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Por favor completa todos los campos.',
+      });
+      return;
+    }
     try {
       const { user } = await createUserWithEmailAndPassword(
         auth,
@@ -32,29 +44,35 @@ const SignUp = () => {
         formData.password
       );
       console.log('Usuario creado:', user);
-      // Aquí puedes hacer algo después de que el usuario se haya registrado, como redirigirlo a otra página.
+      // Mostrar alerta de éxito
+      Swal.fire({
+        icon: 'success',
+        title: 'Registro exitoso!',
+        text: 'Tu cuenta ha sido creada exitosamente.',
+      });
+      // Redirigir al usuario a /sign-in
+      navigate("/sign-in");
     } catch (error) {
       console.error('Error al crear usuario:', error);
-      // Aquí puedes manejar el error, mostrar un mensaje al usuario, etc.
+      // Mostrar alerta de error
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Hubo un error al crear tu cuenta. Por favor inténtalo de nuevo.',
+      });
     }
   };
 
   return (
     <main className="main-signUp">
-      <section>
-        <img src={userImage} alt="user" className="userPaciente" />
-      </section>
       <section className="sign-up">
         <h1>Crear cuenta</h1>
         <form className="sign-in__form" onSubmit={handleSubmit}>
-          <div className="form__input-label">
-            <label htmlFor="name-input" className="form__input-label--label">
+          <div className="custom-input">
+            <label htmlFor="name-input" className="input-label">
               Nombre
             </label>
-            <div className="form__input-label--wrapper">
-              <label htmlFor="name-input" className="icon">
-                <FaRegUser />
-              </label>
+            <div className="input-wrapper">
               <input
                 type="text"
                 placeholder="Jane Doe"
@@ -65,13 +83,14 @@ const SignUp = () => {
                 onChange={handleChange}
                 autoComplete="off"
               />
+              <FaRegUser className="icon" />
             </div>
           </div>
-          <div className="form__input-label">
-            <label htmlFor="email-input" className="form__input-label--label">
+          <div className="custom-input">
+            <label htmlFor="email-input" className="input-label">
               Email
             </label>
-            <div className="form__input-label--wrapper">
+            <div className="input-wrapper">
               <label htmlFor="email-input" className="icon">
                 <MdOutlineMailOutline />
               </label>
@@ -87,14 +106,11 @@ const SignUp = () => {
               />
             </div>
           </div>
-          <div className="form__input-label">
-            <label htmlFor="genre-input" className="form__input-label--label">
+          <div className="custom-input">
+            <label htmlFor="genre-input" className="input-label">
               Género
             </label>
-            <div className="form__input-label--wrapper">
-              <label htmlFor="genre-input" className="icon">
-                <FaRegHeart />
-              </label>
+            <div className="input-wrapper">
               <select
                 name="gender"
                 id="selected-radio"
@@ -107,19 +123,17 @@ const SignUp = () => {
                 <option value="nonBinary">No binario</option>
                 <option value="agender">Otro</option>
               </select>
+              <FaRegHeart className="icon" />
             </div>
           </div>
-          <div className="form__input-label">
+          <div className="custom-input">
             <label
               htmlFor="password-input"
-              className="form__input-label--label"
+              className="input-label"
             >
               Contraseña
             </label>
-            <div className="form__input-label--wrapper">
-              <label htmlFor="password-input" className="icon">
-                <MdOutlineLock />
-              </label>
+            <div className="input-wrapper">
               <input
                 type="password"
                 placeholder="***********"
@@ -129,6 +143,7 @@ const SignUp = () => {
                 value={formData.password}
                 onChange={handleChange}
               />
+              <MdOutlineLock className="icon" />
             </div>
           </div>
           <div className="form__buttons-container">
@@ -137,9 +152,7 @@ const SignUp = () => {
             </button>
           </div>
         </form>
-        <p className="sign-in__form-wrapper--text">
-          ¿Ya tienes cuenta? inicia sesión
-        </p>
+        <p className="smaller">¿Ya tienes cuenta? <Link to='/sign-in'>inicia sesión</Link></p>
       </section>
     </main>
   );

@@ -12,7 +12,11 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action) => {
-      state.user = action.payload
+      state.user = {
+        uid: action.payload.uid,
+        email: action.payload.email,
+        // Agrega otras propiedades necesarias aquí
+      };
     },
     setIsAuthenticated: (state, action) => {
       state.isAuthenticated = action.payload

@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'; // Importa BrowserRouter
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth, messaging } from '../firebase/firebaseConfig';
-import { setIsAuthenticated, setUser } from '../store/users/userSlice';
-import { toast } from 'react-toastify';
 import Home from '../pages/Home';
+import ChatGPT from '../pages/ChatGPT';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
 import Welcome from '../pages/Welcome';
@@ -15,72 +12,67 @@ import 'react-toastify/dist/ReactToastify.css';
 import './AppRoutes.sass';
 import { Skeleton } from 'antd';
 import { LoginScreenProvider } from '../context/LoginScreenContext';
-import FileUpload from '../pages/FileUpload';
 import PaymentMethod from '../pages/PaymentMethod';
 import PaymentValidation from '../pages/PaymentValidation';
 import PhotoTaking from '../pages/PhotoTaking';
-import SuccessfullUpload from '../pages/SuccesfulUpload';
 import SuccessfullPayment from '../pages/SuccessfulPayment';
+import DocHome from '../pages/DocHome';
+import { onAuthStateChanged } from 'firebase/auth';
+import { setIsAuthenticated, setUser } from '../store/users/userSlice';
+import { auth } from '../firebase/firebaseConfig';
+import './AppRoutes.sass'
 
 const AppRoutes = () => {
-  const { isAuthenticated, user } = useSelector((store) => store.user);
+  
+const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [checking, setChecking] = useState(true);
+
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (userLogged) => {
-      if (userLogged?.uid && !user) {
-        dispatch(setIsAuthenticated(true));
-        dispatch(
-          setUser({
-            id: userLogged.uid,
-            email: userLogged.email,
-            name: userLogged.displayName,
-            accessToken: userLogged.accessToken,
-            photoURL: userLogged.photoURL
-          })
-        );
-      }
-      setChecking(false);
-    });
-  }, [dispatch, user]);
+useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, (user) => {
+    if (user) {
+      dispatch(setIsAuthenticated(true));
+      dispatch(
+        setUser({
+          id: user.uid,
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL
+        })
+      );
+    } else {
+      dispatch(setIsAuthenticated(false));
+      dispatch(setUser(null));
+    }
+    setChecking(false);
+  });
 
-  if (checking) {
-    return (
-      <>
-        <Skeleton />
-        <Skeleton />
-        <Skeleton />
-        <Skeleton />
-      </>
-    );
-  }
+  return () => unsubscribe();
+}, [dispatch]); 
 
   return (
-    <Router> {/* Envuelve toda la aplicación con BrowserRouter */}
       <LoginScreenProvider>
         <Routes>
-          <Route path="/">
-            <Route element={<PublicRoutes isAuthenticated={isAuthenticated} />}>
-              <Route path="sign-in" element={<SignIn />} />
-              <Route path="sign-up" element={<SignUp />} />
-              <Route path="welcome" element={<Welcome />} />
-            </Route>
-            <Route element={<PrivatedRoutes isAuthenticated={isAuthenticated} />}>
-              <Route path="home" element={<Home />} />
+            {/* <Route element={<PublicRoutes isAuthenticated={isAuthenticated}/>}> */}
+              <Route path="/sign-in" element={<SignIn />} />
+              <Route path="/sign-up" element={<SignUp />} />
+              <Route path="/welcome" element={<Welcome />} />
+              <Route path="/doctor" element={<DocHome />} />
+              <Route path="/chat" element={<ChatGPT />} />
+              <Route index element={<Navigate to="/Welcome" />} />
+            {/* </Route> */}
+            {/* <Route element={<PrivatedRoutes isAuthenticated={isAuthenticated} />}> */}
+              <Route path="/payment-method" element={<PaymentMethod />} />
+              <Route path="/payment-validation" element={<PaymentValidation />} />
+              <Route path="/photo-taking" element={<PhotoTaking />} />
+              <Route path="/successfull-payment" element={<SuccessfullPayment />} />
+              <Route path="/home" element={<Home />} />
               <Route index element={<Navigate to="/home" />} />
-              <Route path="upload-documents" element={<FileUpload />} />
-              <Route path="payment-method" element={<PaymentMethod />} />
-              <Route path="payment-validation" element={<PaymentValidation />} />
-              <Route path="photo-taking" element={<PhotoTaking />} />
-              <Route path="successfull-up" element={<SuccessfullUpload />} />
-              <Route path="successfull-payment" element={<SuccessfullPayment />} />
-            </Route>
-          </Route>
+            {/* </Route> */}
         </Routes>
       </LoginScreenProvider>
-    </Router>
-  );
-};
+  )
+}
 
 export default AppRoutes;

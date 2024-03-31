@@ -3,47 +3,53 @@
 
 
 .main-signUp
-  background-image: url("../../assets/images/wallpaper2.png")
+  background-image: url("https://res.cloudinary.com/dhhyc88td/image/upload/v1711516031/wallpaper1_fcmfxf.png")
   background-size: cover
-  height: 100vh
+  height: 700px // Ajustamos la altura para que se adapte al dispositivo
+  width: 100%
   display: flex
   justify-content: center
   align-items: center
 
 .sign-up
-  width: 394px
-  height: 674px
-  background: $light-color
+  width: 390px
+  height: 750px// Cambia a auto para que la altura se ajuste según el contenido
+  background: white
   border-top-left-radius: 73px
   border-top-right-radius: 73px
   display: flex
   flex-direction: column
-  align-itmes: center
-  margin-top: 438px
+  align-items: center
+  margin-left: 2px
+  margin-top: 400px
 
 
-  .check-input, .radio-input
-    opacity: 0
-  .check-label, .radio-label
-    cursor: pointer
-    border-radius: 20px
-    background-color: rgba($tertiary-color, 0.37)
-    padding: 10px
-    font-size: 1.2rem
-    letter-spacing: 0.3px
-  .radio-label
-    font-size: 1.4rem
+  h1
+    @include titleH1()
+    padding-top: 20px
+    margin-top: 70px
+    margin-bottom: 20px
 
+      
 
+  .form__buttons-container
+    display: flex
+    flex-direction: column
+    gap: 30px // Ajusta el espacio entre los botones
+    margin-top: 50px
+    margin-left: 25px
+    
+    
+    button
+      width: 100% // Ajusta el ancho de los botones para que ocupen todo el contenedor
+      @include buttonStyleHome()
+      margin-right: 22px
 
-
-.userPaciente
-  width: 150px
-  height: 150px
-  margin: auto // Centrar horizontal y verticalmente
-  position: absolute
-  top: -550px
-  left: 0
-  right: 0
-  bottom:0
-  
+.smaller
+  color: $tertiary-text-color
+  font-weight: $regular-weight
+  font-size: 18px
+  text-align: center
+  margin-right: 50px
+  margin-left: 50px
+  margin-top: 40px

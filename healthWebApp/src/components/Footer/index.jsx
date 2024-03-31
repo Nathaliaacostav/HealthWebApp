@@ -8,7 +8,7 @@ import './styles.sass';
 const Footer = ({ pathname, notificationCheck }) => {
   return (
     <nav className="footer">
-      <Link to="/">
+      <Link to="/Home">
         <div className="option flex flex-col justify-center items-center gap-1">
           <HomeIcon active={pathname === "/"} />
           <span style={{ color: pathname === "/" ? "#8176B6" : "#A5A5A5" }}>
@@ -16,15 +16,15 @@ const Footer = ({ pathname, notificationCheck }) => {
           </span>
         </div>
       </Link>
-      <Link to="/activity">
+      <Link to="/Home">
         <div className="option flex flex-col justify-center items-center gap-1">
           <ExamsIcon active={pathname === "/activity"} />
           <span style={{ color: pathname === "/activity" ? "#8176B6" : "#A5A5A5" }}>
-            Actividad
+            Lectturas
           </span>
         </div>
       </Link>
-      <Link to="/sign-in">
+      <Link to="/Home">
         <div className="option flex flex-col justify-center items-center gap-1">
           <ProfileIcon active={pathname === "/sign-in"} />
           <span style={{ color: pathname === "/sign-in" ? "#8176B6" : "#A5A5A5" }}>
