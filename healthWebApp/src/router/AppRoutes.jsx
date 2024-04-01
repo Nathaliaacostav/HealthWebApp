@@ -9,7 +9,7 @@ import Welcome from '../pages/Welcome';
 import PublicRoutes from './PublicRoutes';
 import PrivatedRoutes from './PrivatedRoutes';
 import 'react-toastify/dist/ReactToastify.css';
-import './AppRoutes.sass';
+
 import { LoginScreenProvider } from '../context/LoginScreenContext';
 import PaymentMethod from '../pages/PaymentMethod';
 import PaymentValidation from '../pages/PaymentValidation';
@@ -18,37 +18,38 @@ import DocHome from '../pages/DocHome';
 import { onAuthStateChanged } from 'firebase/auth';
 import { setIsAuthenticated, setUser } from '../store/users/userSlice';
 import { auth } from '../firebase/firebaseConfig';
-import './AppRoutes.sass'
+
 import FileUpload from '../pages/FileUpload';
 
+
 const AppRoutes = () => {
-  
-const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const {isAuthenticated, user} = useSelector((store) => store.user)
+  const dispatch = useDispatch()
+  /* const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [checking, setChecking] = useState(true);
 
   const dispatch = useDispatch();
 
-useEffect(() => {
-  const unsubscribe = onAuthStateChanged(auth, (user) => {
-    if (user) {
-      dispatch(setIsAuthenticated(true));
-      dispatch(
-        setUser({
-          id: user.uid,
-          email: user.email,
-          displayName: user.displayName,
-          photoURL: user.photoURL
-        })
-      );
-    } else {
-      dispatch(setIsAuthenticated(false));
-      dispatch(setUser(null));
-    }
-    setChecking(false);
-  });
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        dispatch(setIsAuthenticated(true));
+        dispatch(
+          setUser({
+            id: user.uid,
+            email: user.email,
+            displayName: user.displayName,
+          })
+        );
+      } else {
+        dispatch(setIsAuthenticated(false));
+        dispatch(setUser(null));
+      }
+      setChecking(false);
+    });
 
-  return () => unsubscribe();
-}, [dispatch]); 
+    return () => unsubscribe();
+  }, [dispatch]);  */
 
   return (
       <LoginScreenProvider>

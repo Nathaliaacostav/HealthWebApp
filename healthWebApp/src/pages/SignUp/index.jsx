@@ -1,18 +1,36 @@
 import React, { useState } from 'react';
 import { MdOutlineMailOutline, MdOutlineLock } from 'react-icons/md';
 import { FaRegUser, FaRegHeart } from 'react-icons/fa6';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth, firestore } from '../../firebase/firebaseConfig';
-import { collection, addDoc } from 'firebase/firestore';
-import './styles.sass';
 import { Link, useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
+import './styles.sass';
+import { useDispatch } from 'react-redux'
+import { createAnAccountAsync } from '../../store/users/userThunks';
 
 
 const SignUp = () => {
   const navigate = useNavigate()
 
-  const [formData, setFormData] = useState({
+  const dispatch = useDispatch()
+  const {register, handleSubmit} = useForm()
+
+  const handleRegister = (data) => {
+    console.log(data)
+    const userData = {
+      name: data.name,
+      email: data.email,
+      gender: data.gender,
+      password: data.password,
+    }
+
+    dispatch(createAnAccountAsync(userData))
+  }
+
+
+
+
+  /* const [formData, setFormData] = useState({
     name: '',
     email: '',
     gender: '',
@@ -25,8 +43,8 @@ const SignUp = () => {
       [e.target.name]: e.target.value,
     });
   };
-
-  const handleSubmit = async (e) => {
+ */
+  /* const handleSubmit = async (e) => {
     e.preventDefault();
     //verifica si hay campos vacíos
     if (!formData.name || !formData.email || !formData.password) {
@@ -72,13 +90,13 @@ const SignUp = () => {
         text: 'Hubo un error al crear tu cuenta. Por favor inténtalo de nuevo.',
       });
     }
-  };
+  }; */
 
   return (
     <main className="main-signUp">
       <section className="sign-up">
         <h1>Crear cuenta</h1>
-        <form className="sign-in__form" onSubmit={handleSubmit}>
+        <form className="sign-in__form" onSubmit={handleSubmit(handleRegister)}>
           <div className="custom-input">
             <label htmlFor="name-input" className="input-label">
               Nombre
@@ -90,9 +108,10 @@ const SignUp = () => {
                 id="name-input"
                 className="input"
                 name="name"
-                value={formData.name}
-                onChange={handleChange}
+                /* value={formData.name}
+                onChange={handleChange} */
                 autoComplete="off"
+                {...register('name')}
               />
               <FaRegUser className="icon" />
             </div>
@@ -111,9 +130,10 @@ const SignUp = () => {
                 id="email-input"
                 className="input"
                 name="email"
-                value={formData.email}
-                onChange={handleChange}
+                /* value={formData.email}
+                onChange={handleChange} */
                 autoComplete="off"
+                {...register('email')}
               />
             </div>
           </div>
@@ -126,8 +146,9 @@ const SignUp = () => {
                 name="gender"
                 id="selected-radio"
                 className="input text-300"
-                value={formData.gender}
-                onChange={handleChange}
+                /* value={formData.gender}
+                onChange={handleChange} */
+                {...register('gender')}
               >
                 <option value="female">Femenino</option>
                 <option value="male">Masculino</option>
@@ -151,8 +172,9 @@ const SignUp = () => {
                 id="password-input"
                 className="input"
                 name="password"
-                value={formData.password}
-                onChange={handleChange}
+                /* value={formData.password}
+                onChange={handleChange} */
+                {...register('password')}
               />
               <MdOutlineLock className="icon" />
             </div>

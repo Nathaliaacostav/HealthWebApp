@@ -1,5 +1,5 @@
 import { doc, getDoc, setDoc } from 'firebase/firestore'
-/* import { firestore } from '../firebase/firebaseConfig' */
+import { firestore } from '../../firebase/firebaseConfig'
 
 
 const collectionName = 'users'
