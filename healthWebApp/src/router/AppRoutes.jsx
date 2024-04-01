@@ -59,14 +59,11 @@ const AppRoutes = () => {
               <Route path="/sign-up" element={<SignUp />} />
               <Route path="/welcome" element={<Welcome />} />
               <Route path="/doctor" element={<DocHome />} />
-              <Route path="/chat" element={<ChatGPT />} />
               <Route index element={<Navigate to="/Welcome" />} />
             </Route>
             <Route element={<PrivatedRoutes isAuthenticated={isAuthenticated} />}>
-              <Route path="/payment-method" element={<PaymentMethod />} />
               <Route path="/payment-validation" element={<PaymentValidation />} />
               <Route path="/file-upload" element={<FileUpload />} />
-              <Route path="/successfull-payment" element={<SuccessfullPayment />} />
               <Route path="/home" element={<Home />} />
               <Route index element={<Navigate to="/home" />} />
             </Route>
