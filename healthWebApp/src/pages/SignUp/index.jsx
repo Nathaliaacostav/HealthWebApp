@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { MdOutlineMailOutline, MdOutlineLock } from 'react-icons/md';
 import { FaRegUser, FaRegHeart } from 'react-icons/fa6';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../firebase/firebaseConfig';
-import userImage from '../../assets/images/Paciente.png';
+import { auth, firestore } from '../../firebase/firebaseConfig';
+import { collection, addDoc } from 'firebase/firestore';
 import './styles.sass';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
@@ -29,7 +29,7 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     //verifica si hay campos vacíos
-    if (!formData.name || !formData.email || !formData.gender || !formData.password) {
+    if (!formData.name || !formData.email || !formData.password) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -44,6 +44,17 @@ const SignUp = () => {
         formData.password
       );
       console.log('Usuario creado:', user);
+
+
+       // Guardar información adicional del usuario en Firestore
+    await addDoc(collection(user, 'users'), {
+      uid: user.uid,
+      name: formData.name,
+      email: formData.email,
+      gender: formData.gender,
+      // Otros campos adicionales del usuario que desees almacenar
+    });
+
       // Mostrar alerta de éxito
       Swal.fire({
         icon: 'success',

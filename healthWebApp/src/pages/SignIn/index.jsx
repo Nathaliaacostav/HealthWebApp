@@ -82,7 +82,7 @@ const SignIn = () => {
         <button className='form__buttons-container--sign-in' type='submit'>
           Iniciar sesión
         </button>
-        <button className='form__buttons-container--google flex' onClick={() => handleLoginWithGoogle()}>
+        {/* <button className='form__buttons-container--google flex'>
           <span>Google</span>
           <span>
             <FcGoogle />
@@ -90,7 +90,7 @@ const SignIn = () => {
         </button>
         <button className='form__buttons-container--phone' onClick={() => navigate('/sign-in-phone')}>
           <FiPhone />
-        </button>
+        </button> */}
       </div>
     </form>
     <p className='smaller'>¿No tienes cuenta? <Link to='/sign-up'>crea una cuenta</Link></p>

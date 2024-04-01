@@ -10,17 +10,16 @@ import PublicRoutes from './PublicRoutes';
 import PrivatedRoutes from './PrivatedRoutes';
 import 'react-toastify/dist/ReactToastify.css';
 import './AppRoutes.sass';
-import { Skeleton } from 'antd';
 import { LoginScreenProvider } from '../context/LoginScreenContext';
 import PaymentMethod from '../pages/PaymentMethod';
 import PaymentValidation from '../pages/PaymentValidation';
-import PhotoTaking from '../pages/PhotoTaking';
 import SuccessfullPayment from '../pages/SuccessfulPayment';
 import DocHome from '../pages/DocHome';
 import { onAuthStateChanged } from 'firebase/auth';
 import { setIsAuthenticated, setUser } from '../store/users/userSlice';
 import { auth } from '../firebase/firebaseConfig';
 import './AppRoutes.sass'
+import FileUpload from '../pages/FileUpload';
 
 const AppRoutes = () => {
   
@@ -54,22 +53,22 @@ useEffect(() => {
   return (
       <LoginScreenProvider>
         <Routes>
-            {/* <Route element={<PublicRoutes isAuthenticated={isAuthenticated}/>}> */}
+            <Route element={<PublicRoutes isAuthenticated={isAuthenticated}/>}>
               <Route path="/sign-in" element={<SignIn />} />
               <Route path="/sign-up" element={<SignUp />} />
               <Route path="/welcome" element={<Welcome />} />
               <Route path="/doctor" element={<DocHome />} />
               <Route path="/chat" element={<ChatGPT />} />
               <Route index element={<Navigate to="/Welcome" />} />
-            {/* </Route> */}
-            {/* <Route element={<PrivatedRoutes isAuthenticated={isAuthenticated} />}> */}
+            </Route>
+            <Route element={<PrivatedRoutes isAuthenticated={isAuthenticated} />}>
               <Route path="/payment-method" element={<PaymentMethod />} />
               <Route path="/payment-validation" element={<PaymentValidation />} />
-              <Route path="/photo-taking" element={<PhotoTaking />} />
+              <Route path="/file-upload" element={<FileUpload />} />
               <Route path="/successfull-payment" element={<SuccessfullPayment />} />
               <Route path="/home" element={<Home />} />
               <Route index element={<Navigate to="/home" />} />
-            {/* </Route> */}
+            </Route>
         </Routes>
       </LoginScreenProvider>
   )

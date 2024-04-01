@@ -2,6 +2,7 @@ import { setUser, setLoading, setError } from './userSlice';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import { auth } from '../../firebase/firebaseConfig'
 import { setIsAuthenticated} from './userSlice'
+import { getUserFromCollection } from '../services/userServices';
 
 // Función para registrar un nuevo usuario
 export const createAnAccountAsync = ( newUser ) => async ( dispatch ) => {

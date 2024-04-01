@@ -1,13 +1,47 @@
-import Footer from "../../components/Footer";
+
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FiMoreVertical } from 'react-icons/fi';
+import { IoIosArrowBack } from "react-icons/io";
+import { logoutAsync } from '../../store/users/userThunks'; // Importa la función logoutAsync desde tu módulo de autenticación
+import Footer from "../../components/Footer";
 import "./styles.sass";
 
 const Home = () => {
-
   const navigate = useNavigate();
+  const [menuVisible, setMenuVisible] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuVisible(!menuVisible);
+  };
+
+  const handleLogout = async () => {
+    try {
+      console.log("Iniciando logout...");
+      await logoutAsync();
+      console.log("Logout exitoso.");
+      navigate('/welcome');
+    } catch (error) {
+      console.error('Error al cerrar sesión:', error);
+    }
+  };
 
   return (
     <main className="main-home">
+      <div className="home__topBar">
+        <button className="home__backButton" onClick={() => navigate('/Home')}>
+          <IoIosArrowBack />
+        </button>
+        
+        <button className="home__fi-more" onClick={toggleMenu}>
+          <FiMoreVertical />
+        </button>
+        {menuVisible && (
+          <div className="dropdown-menu">
+            <button onClick={handleLogout}>Logout</button>
+          </div>
+        )}
+      </div>
       <section className="container__home">
         <div className="home__title">
           <h1 className="home__title--title">Lecttu!</h1>
@@ -16,44 +50,12 @@ const Home = () => {
           tu resultado médico en menos de 24h
         </h3>
         <p className="home__title--paragraph">+ humano + rápido</p>
-        {/* <div className="container--buttonRound">
-          <button className="buttonRound">
-            <img
-              className="buttonRound--icon"
-              src="https://res.cloudinary.com/dhhyc88td/image/upload/v1711175393/usuario_hka6sn.png"
-              alt=""
-            />
-          </button>
-          <button className="buttonRound">
-            <img
-              className="buttonRound--icon"
-              src="https://res.cloudinary.com/dhhyc88td/image/upload/v1711175393/dolar_honbfw.png"
-              alt=""
-            />
-          </button>
-          <button className="buttonRound">
-            <img
-              className="buttonRound--icon"
-              src="https://res.cloudinary.com/dhhyc88td/image/upload/v1711175393/examen-medico_hq01ey.png"
-              alt=""
-            />
-          </button>
-          <button className="buttonRound">
-            <img
-              className="buttonRound--icon"
-              src="https://res.cloudinary.com/dhhyc88td/image/upload/v1711175393/anadir_bscuhr.png"
-              alt=""
-            />
-          </button>
-        </div> */}
         <section className="container--secondary">
           <div className="secondary-buttons">
-            {/* <button className="secondary-buttons-btn" onClick={() => navigate('/photo-taking')}>Tomar foto</button> */}
-            <button className="secondary-buttons-btn">Ingresa tu examen</button>
-            {/* <button className="secondary-buttons-btn" onClick={() => navigate('/chat')}>Enviar preguntas</button> */}
+            <button className="secondary-buttons-btn" onClick={() => navigate('/file-upload')}>Ingresa tu examen</button>
           </div>
           <div>
-            <p className="secondary-pr">Carga tus exámenes de laboratorio en foto o PDF. Un profesional médico se encargará de su interpretación y envío de resultados</p>
+            <p className="secondary-pr" >Carga tus exámenes de laboratorio en foto o PDF. Un profesional médico se encargará de su interpretación y envío de resultados</p>
           </div>
         </section>
       </section>
@@ -62,4 +64,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Home

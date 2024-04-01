@@ -3,6 +3,7 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
 import { getMessaging } from "firebase/messaging";
+import { getStorage } from "firebase/storage";
 
 // Tu configuración de Firebase
 const firebaseConfig = {
@@ -22,6 +23,9 @@ export const auth = getAuth(app);
 
 // Inicializa Firestore (base de datos NoSQL)
 export const firestore = getFirestore(app);
+
+// Inicializa Firebase Storage
+export const storage = getStorage(app);
 
 // Inicializa Analytics
 export const analytics = getAnalytics(app);
